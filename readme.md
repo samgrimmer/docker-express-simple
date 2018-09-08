@@ -45,13 +45,13 @@ kubectl get deployments
 kubectl get rs
 
 # get kubernetes pods
-kubectl get podss
+kubectl get pods
 
 # get kubernetes service
 kubectl get svc
 
 # delete kubernetes deployment
-kubectl delete deployment app-name-deployment
+kubectl delete deployment docker-express-simple-deployment
 
 # delete kubernetes service
-kubectl delete service app-name-deployment
+kubectl delete service docker-express-simple-deployment
