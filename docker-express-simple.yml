@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: docker-express-simple-deployment
+  labels:
+    app: docker-express-simple
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: docker-express-simple
+      labels:
+        app: docker-express-simple
+    spec:
+      containers:
+      - name: docker-express-simple
+        image: external-registry/docker-express-simple:v1
+        imagePullPolicy: IfNotPresent
+      imagePullSecrets:
+      - name: external-registry-key
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: docker-express-simple
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: docker-express-simple-service
+spec:
+  selector:
+    app: docker-express-simple
+  ports:
+    - port: 80
+      targetPort: 3000
+  type: LoadBalancer
+  
+  
